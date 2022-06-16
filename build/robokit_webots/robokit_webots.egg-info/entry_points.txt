@@ -1,0 +1,3 @@
+[console_scripts]
+demo_head_control = robokit_webots.demo_head_control:main
+

@@ -1,0 +1,6 @@
+source;share/robokit_webots/hook/pythonpath.ps1
+source;share/robokit_webots/hook/pythonpath.dsv
+source;share/robokit_webots/hook/pythonpath.sh
+source;share/robokit_webots/hook/ament_prefix_path.ps1
+source;share/robokit_webots/hook/ament_prefix_path.dsv
+source;share/robokit_webots/hook/ament_prefix_path.sh
