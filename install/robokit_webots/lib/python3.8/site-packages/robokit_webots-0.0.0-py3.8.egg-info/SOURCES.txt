@@ -8,6 +8,7 @@ setup.py
 ../../build/robokit_webots/robokit_webots.egg-info/requires.txt
 ../../build/robokit_webots/robokit_webots.egg-info/top_level.txt
 ../../build/robokit_webots/robokit_webots.egg-info/zip-safe
+launch/webots_launch.py
 resource/robokit_webots
 robokit_webots/__init__.py
 robokit_webots/demo_head_control.py
