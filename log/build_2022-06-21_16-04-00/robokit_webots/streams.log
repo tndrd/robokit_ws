@@ -1,0 +1,24 @@
+[0.496s] Invoking command in '/home/tndrd/robokit_ws/src/robokit_webots': PYTHONPATH=/home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/robokit_webots build --build-base /home/tndrd/robokit_ws/build/robokit_webots/build install --prefix /home/tndrd/robokit_ws/install/robokit_webots --record /home/tndrd/robokit_ws/build/robokit_webots/install.log --single-version-externally-managed
+[0.651s] running egg_info
+[0.651s] writing ../../build/robokit_webots/robokit_webots.egg-info/PKG-INFO
+[0.651s] writing dependency_links to ../../build/robokit_webots/robokit_webots.egg-info/dependency_links.txt
+[0.652s] writing entry points to ../../build/robokit_webots/robokit_webots.egg-info/entry_points.txt
+[0.652s] writing requirements to ../../build/robokit_webots/robokit_webots.egg-info/requires.txt
+[0.652s] writing top-level names to ../../build/robokit_webots/robokit_webots.egg-info/top_level.txt
+[0.681s] reading manifest file '../../build/robokit_webots/robokit_webots.egg-info/SOURCES.txt'
+[0.682s] writing manifest file '../../build/robokit_webots/robokit_webots.egg-info/SOURCES.txt'
+[0.682s] running build
+[0.682s] running build_py
+[0.682s] copying robokit_webots/demo_head_control.py -> /home/tndrd/robokit_ws/build/robokit_webots/build/lib/robokit_webots
+[0.682s] running install
+[0.683s] running install_lib
+[0.683s] copying /home/tndrd/robokit_ws/build/robokit_webots/build/lib/robokit_webots/demo_head_control.py -> /home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages/robokit_webots
+[0.684s] byte-compiling /home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages/robokit_webots/demo_head_control.py to demo_head_control.cpython-38.pyc
+[0.685s] running install_data
+[0.686s] running install_egg_info
+[0.687s] removing '/home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages/robokit_webots-0.0.0-py3.8.egg-info' (and everything under it)
+[0.687s] Copying ../../build/robokit_webots/robokit_webots.egg-info to /home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages/robokit_webots-0.0.0-py3.8.egg-info
+[0.687s] running install_scripts
+[0.702s] Installing demo_head_control script to /home/tndrd/robokit_ws/install/robokit_webots/lib/robokit_webots
+[0.703s] writing list of installed files to '/home/tndrd/robokit_ws/build/robokit_webots/install.log'
+[0.732s] Invoked command in '/home/tndrd/robokit_ws/src/robokit_webots' returned '0': PYTHONPATH=/home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/robokit_webots build --build-base /home/tndrd/robokit_ws/build/robokit_webots/build install --prefix /home/tndrd/robokit_ws/install/robokit_webots --record /home/tndrd/robokit_ws/build/robokit_webots/install.log --single-version-externally-managed
