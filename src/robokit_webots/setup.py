@@ -5,13 +5,18 @@ package_name = 'robokit_webots'
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name],
+    packages=['robokit_webots', 'utils'],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch',
-            ['launch/webots_launch.py']
+            ['launch/sim_launch.py',
+             'launch/webots_hardware_launch.py',
+             'launch/webots_plain_launch.py',
+             'launch/ros2_control_launch.py',
+             'launch/demo_launch.py'
+            ]
         )
     ],
     install_requires=['setuptools', 'launch'],
