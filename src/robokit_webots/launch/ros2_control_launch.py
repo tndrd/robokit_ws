@@ -45,9 +45,16 @@ def generate_launch_description():
         }],
     )
 
+    joint_control_interface = Node(
+        package='robokit_webots',
+        executable='joint_control_interface',
+        output='screen',
+    )
+
     return LaunchDescription([
         joint_state_broadcaster_spawner,
         position_controller_spawner,
-        robot_state_publisher
+        robot_state_publisher,
+        joint_control_interface
     ])
 

@@ -10,7 +10,7 @@ def generate_launch_description():
 
     control_demo = Node(
         package='robokit_webots',
-        executable='demo_head_control',
+        executable='demo_publisher',
         output='screen'
     )
 
