@@ -1,3 +1,5 @@
 [console_scripts]
-demo_head_control = robokit_webots.demo_head_control:main
+animation = robokit_webots.animation:main
+demo_publisher = robokit_webots.demo_publisher:main
+joint_control_interface = robokit_webots.joint_control_interface:main
 

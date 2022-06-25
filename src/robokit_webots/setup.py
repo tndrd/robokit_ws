@@ -29,7 +29,8 @@ setup(
     entry_points={
         'console_scripts': [
             f"demo_publisher = {package_name}.demo_publisher:main",
-            f"joint_control_interface = {package_name}.joint_control_interface:main"
+            f"joint_control_interface = {package_name}.joint_control_interface:main",
+            f"animation = {package_name}.animation:main"
         ],
     },
 )

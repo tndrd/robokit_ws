@@ -2,7 +2,7 @@
 
 """Launch Webots Robokit-MV simulation."""
 
-from launch_ros.actions import Node
+from launch_ros.actions import Node, SetParameter
 from utils.launch_utils import include_launch
 from launch import LaunchDescription
 

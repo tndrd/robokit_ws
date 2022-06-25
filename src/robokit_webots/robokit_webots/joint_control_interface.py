@@ -4,13 +4,13 @@ import rclpy
 from rclpy.node import Node
 from robokit_interfaces.msg import JointCommands
 from std_msgs.msg import Float64MultiArray
-from utils.parse_utils import get_joint_names
+from utils.load_utils import load_joint_names
 
 class JointControlInterface(Node):
     def __init__(self, joint_names_path='joint_names.yaml', interface_topic='/joints/commands', ros2control_topic='/rk_joint_group_position_controller/commands'):
         super().__init__('joint_control_interface')
-        self.joint_names = get_joint_names(joint_names_path)
-        self.interface_sub    = self.create_subscription(JointCommands, interface_topic, self.joint_commands_callback, 10)
+        self.joint_names = load_joint_names(joint_names_path)
+        self.interface_sub   = self.create_subscription(JointCommands, interface_topic, self.joint_commands_callback, 10)
         self.ros2control_pub = self.create_publisher(Float64MultiArray, ros2control_topic, 10)
 
         self.idx_map = {}
