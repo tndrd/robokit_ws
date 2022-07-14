@@ -1,0 +1,6 @@
+<library path="robokit_hardware">
+  <class name="robokit_hardware/RobokitHardware"
+         type="robokit_hardware::RobokitHardware"
+         base_class_type="hardware_interface::SystemInterface">
+  </class>
+</library>
