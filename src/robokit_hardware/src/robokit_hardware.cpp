@@ -48,7 +48,7 @@ hardware_interface::return_type RobokitHardware::configure(
   //long baudrate    = stol(info_.hardware_parameters["baudrate"]);
   //int timeout      = stoi(info_.hardware_parameters["timeout"]);
 
-  //serial_.open("/dev/tty28", 1250000, 1000);
+  serial_.open("/dev/pts/1", 38400, 1);
 
   std::cout << "Configuring..." << std::endl;
 
@@ -137,7 +137,7 @@ hardware_interface::return_type RobokitHardware::write()
     dump_servo(i);
   }
 
-  //serial_.setServoPos(servos_.data(), servos_.size(), 1);
+  serial_.setServoPos(servos_.data(), servos_.size(), 1);
 
   return hardware_interface::return_type::OK;
 }

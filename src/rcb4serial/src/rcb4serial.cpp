@@ -10,7 +10,7 @@ bool Rcb4Serial::open(const std::string& name, const long baudrate, const int ti
 
 	return !!port_;
 }
-/*
+
 bool Rcb4Serial::synchronize(byte txBuf[],byte txLen,byte rxBuf[],byte rxLen)
 {
 
@@ -40,14 +40,14 @@ bool Rcb4Serial::synchronize(byte txBuf[],byte txLen,byte rxBuf[],byte rxLen)
 
 	return true;
 }
-*/
 
+/*
 bool Rcb4Serial::synchronize(byte txBuf[],byte txLen,byte rxBuf[],byte rxLen)
 {
 	if (!port_) throw "Your port seems ill";
 	printf("%x%x%x", ((int*)txBuf)[0], ((int*)txBuf)[1], ((int*)txBuf)[2]);
 	return true;
 }
-
+*/
 
 

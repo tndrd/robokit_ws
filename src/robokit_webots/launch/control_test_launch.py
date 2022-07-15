@@ -66,7 +66,7 @@ def generate_launch_description():
         joint_state_broadcaster_spawner,
         position_controller_spawner,
         robot_state_publisher,
-        #joint_control_interface,
-        #control_demo
+        joint_control_interface,
+        control_demo
     ])
 
