@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(robokit_hardware)
+project(rcb4serial)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -17,15 +17,13 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(hardware_interface REQUIRED)
-find_package(pluginlib REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(rcb4serial REQUIRED)
+find_package(serial REQUIRED)
 
 add_library(
   ${PROJECT_NAME}
   SHARED
-  src/robokit_hardware.cpp
+  src/rcb4serial.cpp
+  src/Rcb4BaseClass.cpp
 )
 
 target_include_directories(
@@ -36,13 +34,22 @@ target_include_directories(
 
 ament_target_dependencies(
   ${PROJECT_NAME}
-  hardware_interface
-  pluginlib
-  rclcpp
-  rcb4serial
+  serial
 )
 
-pluginlib_export_plugin_description_file(hardware_interface robokit_hardware.xml)
+ament_export_include_directories(
+  include
+)
+
+ament_export_libraries(
+  ${PROJECT_NAME}
+)
+
+ament_export_dependencies(
+  serial
+)
+
+#ament_export_targets(export_LibA HAS_LIBRARY_TARGET)
 
 install(
   TARGETS ${PROJECT_NAME}
@@ -56,23 +63,14 @@ install(
   DESTINATION include
 )
 
-ament_export_include_directories(
-  include
-)
-
-ament_export_libraries(
-  ${PROJECT_NAME}
-)
-
-ament_export_dependencies(
-  hardware_interface
-  pluginlib
-  rclcpp
-  rcb4serial
-)
-
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # uncomment the line when a copyright and license is not present in all source files
+  #set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # uncomment the line when this package is not in a git repo
+  #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
 

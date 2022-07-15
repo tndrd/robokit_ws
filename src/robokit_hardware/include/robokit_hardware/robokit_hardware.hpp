@@ -25,7 +25,7 @@
 #include "hardware_interface/visibility_control.h"
 #include "rclcpp/macros.hpp"
 
-#include "rcb4lib.hpp"
+#include "rcb4serial/rcb4serial.hpp"
 
 namespace robokit_hardware
 {
@@ -58,10 +58,16 @@ public:
 
 private:
 
+  int  rad2encoder(double rad);
+  double encoder2rad(int enc);
+  void dump_servo(size_t name);
+
   Rcb4Serial serial_;
-  
+
   std::vector<double> hw_commands_;
   std::vector<double> hw_states_;
+  std::vector<Rcb4BaseClass::ServoData> servos_;
+  
 };
 
 }

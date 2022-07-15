@@ -20,6 +20,7 @@
 #include <memory>
 #include <vector>
 
+#include <cstring>
 #include <hardware_interface/types/hardware_interface_type_values.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/macros.hpp>
@@ -29,25 +30,52 @@ namespace robokit_hardware
 hardware_interface::return_type RobokitHardware::configure(
   const hardware_interface::HardwareInfo & info)
 {
+
   if (configure_default(info) != hardware_interface::return_type::OK)
   {
     return hardware_interface::return_type::ERROR;
   }
 
-  std::string port = info_.hardware_parameters["serial_port"];
-  long baudrate    = stol(info_.hardware_parameters["baudrate"]);
-  int timeout      = stoi(info_.hardware_parameters["timeout"]);
+  hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
+  hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
+  //servos_.resize(info_.joints.size());
 
-  serial_.open(port, baudrate, timeout);
+  //throw "EEEEEE";
 
+  //std::string port     = info_.hardware_parameters["serial_port"];
+  //std::string baudrate = info_.hardware_parameters["baudrate"];
+  //std::string timeout  = info_.hardware_parameters["timeout"];
+  //long baudrate    = stol(info_.hardware_parameters["baudrate"]);
+  //int timeout      = stoi(info_.hardware_parameters["timeout"]);
+
+  //serial_.open("/dev/tty28", 1250000, 1000);
+
+  std::cout << "Configuring..." << std::endl;
 
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
-    std::cout << "Found joint " << joint.name << std::endl;
+
+    //if (joint.parameters.find("id")) throw 4;
+
+    //std::cout << joint.parameters.find("id")  -> second << std::endl;
+    
+    
+    
+    int id   = 1;//std::stoi(joint.parameters.find("id")  -> second);
+    int sio  = 1;//std::stoi(joint.parameters.find("sio") -> second);
+
+    
+
+    std::cout << "Found joint " << joint.name << " (id: " << id << ", sio: " << sio << ")" << std::endl;
+    
+    Rcb4BaseClass::ServoData servo;
+    servo.Id   = id;
+    servo.Sio  = sio;
+    servo.Data = rad2encoder(0);
+    
+    servos_.push_back(servo);
   }
 
-  hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
-  hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   status_ = hardware_interface::status::CONFIGURED;
   return hardware_interface::return_type::OK;
 }
@@ -60,6 +88,7 @@ RobokitHardware::export_state_interfaces()
   {
     state_interfaces.emplace_back(hardware_interface::StateInterface(
       info_.joints[i].name, hardware_interface::HW_IF_POSITION, &hw_states_[i]));
+    std::cout << "Configured position state interface for joint " << info_.joints[i].name << std::endl;
   }
 
   return state_interfaces;
@@ -73,6 +102,7 @@ RobokitHardware::export_command_interfaces()
   {
     command_interfaces.emplace_back(hardware_interface::CommandInterface(
       info_.joints[i].name, hardware_interface::HW_IF_POSITION, &hw_commands_[i]));
+    std::cout << "Configured position command interface for joint " << info_.joints[i].name << std::endl;
   }
 
   return command_interfaces;
@@ -94,14 +124,45 @@ hardware_interface::return_type RobokitHardware::stop()
 
 hardware_interface::return_type RobokitHardware::read()
 {
-  RCLCPP_INFO(rclcpp::get_logger("RobokitHardware"), "Reading...");
+  //std::cout << "Trying to read" << std::endl;
   return hardware_interface::return_type::OK;
 }
 
 hardware_interface::return_type RobokitHardware::write()
 {
-  RCLCPP_INFO(rclcpp::get_logger("RobokitHardware"), "Writing...");
+
+  for (size_t i = 0; i < servos_.size(); i++)
+  {
+    servos_[i].Data = rad2encoder(hw_commands_[i]);
+    dump_servo(i);
+  }
+
+  //serial_.setServoPos(servos_.data(), servos_.size(), 1);
+
   return hardware_interface::return_type::OK;
+}
+
+int RobokitHardware::rad2encoder(const double rad)
+{
+  return rad * 1698 + 7500;
+}
+
+double RobokitHardware::encoder2rad(const int enc)
+{
+  return (double(enc) - 7500.0) / 1698;
+}
+
+void RobokitHardware::dump_servo(const size_t index)
+{ 
+
+  Rcb4BaseClass::ServoData servo = servos_[index];
+
+  int    enc = servo.Data;
+  double rad = encoder2rad(enc);
+  double deg = rad * (180 / 3.14);
+
+  printf("%s (%d@%d): { deg: %lf | rad: %lf | enc: %d }\n", info_.joints[index].name.c_str(),
+    servo.Id, servo.Sio, deg, rad, enc); 
 }
 
 }
