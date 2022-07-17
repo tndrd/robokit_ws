@@ -40,7 +40,7 @@ hardware_interface::return_type RobokitHardware::configure(
   hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
 
   std::string port = info_.hardware_parameters["port"];
-  long baudrate    = stol(info_.hardware_parameters["baudrate"]);
+  long baudrate    = stol(info_.hardware_parameters["baud"]);
   int timeout      = stoi(info_.hardware_parameters["timeout"]);
 
   try
