@@ -8,14 +8,15 @@ setup.py
 ../../build/robokit_webots/robokit_webots.egg-info/requires.txt
 ../../build/robokit_webots/robokit_webots.egg-info/top_level.txt
 ../../build/robokit_webots/robokit_webots.egg-info/zip-safe
+launch/controllers_launch.py
 launch/demo_launch.py
-launch/ros2_control_launch.py
 launch/sim_launch.py
 launch/webots_hardware_launch.py
 launch/webots_plain_launch.py
 resource/robokit_webots
 robokit_webots/__init__.py
 robokit_webots/animation.py
+robokit_webots/bring_up.py
 robokit_webots/demo_publisher.py
 robokit_webots/joint_control_interface.py
 test/test_copyright.py

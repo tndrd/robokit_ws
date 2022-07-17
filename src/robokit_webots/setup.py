@@ -14,7 +14,7 @@ setup(
             ['launch/sim_launch.py',
              'launch/webots_hardware_launch.py',
              'launch/webots_plain_launch.py',
-             'launch/ros2_control_launch.py',
+             'launch/controllers_launch.py',
              'launch/demo_launch.py'
             ]
         )
@@ -30,7 +30,8 @@ setup(
         'console_scripts': [
             f"demo_publisher = {package_name}.demo_publisher:main",
             f"joint_control_interface = {package_name}.joint_control_interface:main",
-            f"animation = {package_name}.animation:main"
+            f"animation = {package_name}.animation:main",
+            f"bring_up = {package_name}.bring_up:main"
         ],
     },
 )

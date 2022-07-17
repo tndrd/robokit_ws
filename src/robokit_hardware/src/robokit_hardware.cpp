@@ -38,35 +38,30 @@ hardware_interface::return_type RobokitHardware::configure(
 
   hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
-  //servos_.resize(info_.joints.size());
 
-  //throw "EEEEEE";
+  std::string port = info_.hardware_parameters["port"];
+  long baudrate    = stol(info_.hardware_parameters["baudrate"]);
+  int timeout      = stoi(info_.hardware_parameters["timeout"]);
 
-  //std::string port     = info_.hardware_parameters["serial_port"];
-  //std::string baudrate = info_.hardware_parameters["baudrate"];
-  //std::string timeout  = info_.hardware_parameters["timeout"];
-  //long baudrate    = stol(info_.hardware_parameters["baudrate"]);
-  //int timeout      = stoi(info_.hardware_parameters["timeout"]);
-
-  serial_.open("/dev/pts/1", 38400, 1);
+  try
+  {
+    serial_.open(port, baudrate, timeout);
+  }
+  catch(serial::IOException& exc)
+  {
+    RCLCPP_FATAL(rclcpp::get_logger("RobokitHardware"), "Serial port open failed: %s", exc.what());
+    return hardware_interface::return_type::ERROR;
+  }
 
   std::cout << "Configuring..." << std::endl;
 
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
+        
+    int id   = 1;//std::stoi(joint.parameters.at("id"));
+    int sio  = 1;//std::stoi(joint.parameters.at("sio"));
 
-    //if (joint.parameters.find("id")) throw 4;
-
-    //std::cout << joint.parameters.find("id")  -> second << std::endl;
-    
-    
-    
-    int id   = 1;//std::stoi(joint.parameters.find("id")  -> second);
-    int sio  = 1;//std::stoi(joint.parameters.find("sio") -> second);
-
-    
-
-    std::cout << "Found joint " << joint.name << " (id: " << id << ", sio: " << sio << ")" << std::endl;
+    std::cout << "Found joint " << joint.name << " (" << id << "@" << sio << ")" << std::endl;
     
     Rcb4BaseClass::ServoData servo;
     servo.Id   = id;
@@ -75,6 +70,8 @@ hardware_interface::return_type RobokitHardware::configure(
     
     servos_.push_back(servo);
   }
+
+  std::cout << "HWI configured" << std::endl;
 
   status_ = hardware_interface::status::CONFIGURED;
   return hardware_interface::return_type::OK;
@@ -124,13 +121,11 @@ hardware_interface::return_type RobokitHardware::stop()
 
 hardware_interface::return_type RobokitHardware::read()
 {
-  //std::cout << "Trying to read" << std::endl;
   return hardware_interface::return_type::OK;
 }
 
 hardware_interface::return_type RobokitHardware::write()
 {
-
   for (size_t i = 0; i < servos_.size(); i++)
   {
     servos_[i].Data = rad2encoder(hw_commands_[i]);
@@ -138,7 +133,6 @@ hardware_interface::return_type RobokitHardware::write()
   }
 
   serial_.setServoPos(servos_.data(), servos_.size(), 1);
-
   return hardware_interface::return_type::OK;
 }
 
