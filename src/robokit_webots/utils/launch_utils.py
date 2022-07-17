@@ -22,3 +22,6 @@ def include_launch(launch_file, launch_arguments={}):
 def simulation(world):
     return include_launch('sim_launch.py' , {'world': load_world(world)})
 
+def robokit():
+    return include_launch('robot_launch.py')
+

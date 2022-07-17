@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from launch_ros.actions import Node
-from utils.launch_utils import include_launch, simulation
+from utils.launch_utils import include_launch, simulation, robokit
 from launch import LaunchDescription
 
 def generate_launch_description():
@@ -13,7 +13,8 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        simulation("robocup_training.wbt"),
+        #simulation("robocup_training.wbt"),
+        robokit(),
         demo_publisher
     ])
 

@@ -39,9 +39,9 @@ hardware_interface::return_type RobokitHardware::configure(
   hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
 
-  std::string port = info_.hardware_parameters["port"];
-  long baudrate    = stol(info_.hardware_parameters["baud"]);
-  int timeout      = stoi(info_.hardware_parameters["timeout"]);
+  std::string port = info_.hardware_parameters.at("port");
+  long baudrate    = std::stol(info_.hardware_parameters.at("baudrate"));
+  int timeout      = std::stoi(info_.hardware_parameters.at("timeout"));
 
   try
   {
@@ -49,7 +49,7 @@ hardware_interface::return_type RobokitHardware::configure(
   }
   catch(serial::IOException& exc)
   {
-    RCLCPP_FATAL(rclcpp::get_logger("RobokitHardware"), "Serial port open failed: %s", exc.what());
+    RCLCPP_FATAL(rclcpp::get_logger("RobokitHardware"), "Serial port (%s, %ld, %d) open failed: %s", port.c_str(), baudrate, timeout, exc.what());
     return hardware_interface::return_type::ERROR;
   }
 
@@ -58,8 +58,8 @@ hardware_interface::return_type RobokitHardware::configure(
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
         
-    int id   = 1;//std::stoi(joint.parameters.at("id"));
-    int sio  = 1;//std::stoi(joint.parameters.at("sio"));
+    int id   = std::stoi(joint.parameters.at("id"));
+    int sio  = std::stoi(joint.parameters.at("sio"));
 
     std::cout << "Found joint " << joint.name << " (" << id << "@" << sio << ")" << std::endl;
     

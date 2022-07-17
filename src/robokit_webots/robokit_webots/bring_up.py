@@ -34,7 +34,7 @@ class BringUpManager(Node):
 
         print(f"Robot is launching in {hw_name}")
 
-        robot_description = load_description(environment)
+        robot_description = load_description(environment, "/dev/pts/2", "38400", "1")
         ros2_controllers  = load_ros2_controllers(controllers)
 
         with open(self.directory + "robot_description.urdf", "w") as description_file:

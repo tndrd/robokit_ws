@@ -63,10 +63,10 @@ def load_description(environment, port="none", baud="none", timeout="none"):
         raise RuntimeError
 
     doc = xacro.process_file(robokit_description, 
-        mappings={  'use_sim': use_sim,
-                    'port':    str(port),
-                    'baud':    str(baud),
-                    'timeout': str(timeout)  })
+        mappings={  'use_sim':  use_sim,
+                    'port':     str(port),
+                    'baudrate': str(baud),
+                    'timeout':  str(timeout)  })
     
     description = doc.toxml()
 
