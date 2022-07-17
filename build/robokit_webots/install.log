@@ -23,6 +23,8 @@
 /home/tndrd/robokit_ws/install/robokit_webots/share/robokit_webots/launch/webots_plain_launch.py
 /home/tndrd/robokit_ws/install/robokit_webots/share/robokit_webots/launch/controllers_launch.py
 /home/tndrd/robokit_ws/install/robokit_webots/share/robokit_webots/launch/demo_launch.py
+/home/tndrd/robokit_ws/install/robokit_webots/share/robokit_webots/launch/robot_launch.py
+/home/tndrd/robokit_ws/install/robokit_webots/share/robokit_webots/launch/robot_hardware_launch.py
 /home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages/robokit_webots-0.0.0-py3.8.egg-info/PKG-INFO
 /home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages/robokit_webots-0.0.0-py3.8.egg-info/SOURCES.txt
 /home/tndrd/robokit_ws/install/robokit_webots/lib/python3.8/site-packages/robokit_webots-0.0.0-py3.8.egg-info/requires.txt

@@ -15,7 +15,9 @@ setup(
              'launch/webots_hardware_launch.py',
              'launch/webots_plain_launch.py',
              'launch/controllers_launch.py',
-             'launch/demo_launch.py'
+             'launch/demo_launch.py',
+             'launch/robot_launch.py',
+             'launch/robot_hardware_launch.py'
             ]
         )
     ],

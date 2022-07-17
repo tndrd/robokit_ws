@@ -27,8 +27,8 @@ class BringUpManager(Node):
 
         if environment == "webots":
             hw_name = "Webots simulation"
-        elif environment == "Reality":
-            hw_name = "reality"
+        elif environment == "reality":
+            hw_name = "Reality"
         else:
             print(f"Error: Unknown environment {environment}")
 

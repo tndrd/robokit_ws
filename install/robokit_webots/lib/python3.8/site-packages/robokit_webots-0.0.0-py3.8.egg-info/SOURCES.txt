@@ -10,6 +10,8 @@ setup.py
 ../../build/robokit_webots/robokit_webots.egg-info/zip-safe
 launch/controllers_launch.py
 launch/demo_launch.py
+launch/robot_hardware_launch.py
+launch/robot_launch.py
 launch/sim_launch.py
 launch/webots_hardware_launch.py
 launch/webots_plain_launch.py
